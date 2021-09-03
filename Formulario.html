@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body style="background-color: rgb(243, 243, 243);">
+    <div class="container-fluid">
+        <h2 class="text-center">Formulario</h2>
+        <form class="row mt-4 mx-2 ">
+            <div class="col-4 bg-white p-3 rounded" >
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label fw-bold">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Escribe un nombre" required>
+                
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label fw-bold">Apellido paterno</label>
+                    <input type="text" class="form-control" id="apellidoP" placeholder="Escribe un apellido paterno" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label fw-bold">Apellido materno</label>
+                    <input type="text" class="form-control" id="apellidoM" placeholder="Escribe un apellido materno" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label fw-bold">Edad</label>
+                    <input type="number" class="form-control" id="edad" placeholder="Escribe una edad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label fw-bold">Correo eletronico</label>
+                    <input type="email" class="form-control" id="correo" placeholder="Escribe un correo eletronico" required>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+               
+                    <button type="button"    onclick="agregar()"  class="btn btn-success">Añadir</button>
+                </div>
+            </div>
+            <div class="col  bg-white mx-2 rounded">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Apellido Paterno</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Correo</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tablaDatos">
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+      
+    </div>
+</body>
+
+<script>
+    let index = 0;
+
+    let listaPersonas = [];
+    function agregar(){
+
+        let nombre = document.getElementById("nombre").value;
+        let apellidoP = document.getElementById("apellidoP").value;
+        let apellidoM = document.getElementById("apellidoM").value;
+        let edad = document.getElementById("edad").value;
+        let correo = document.getElementById("correo").value;
+        let tabla = document.getElementById("tablaDatos");
+
+
+        if(nombre != "" && 
+        apellidoM != "" && apellidoP != "" && 
+        edad != "" && correo != ""){
+
+            let repetido = false;
+     
+            listaPersonas.forEach(persona => {
+                console.log(persona.correo);
+                if(correo == persona.correo){
+                   repetido = true;
+                }
+            });
+
+            listaPersonas.push({nombre,apellidoP,apellidoM,edad,correo});
+
+
+            if(repetido != true){
+                index += 1;
+            let datos = ` <tr>
+            <th scope="row">${index}</th>
+            <td>${nombre}</td>
+            <td>${apellidoM}</td>
+            <td>${apellidoP}</td>
+            <td>${edad}</td>
+            <td>${correo}</td>
+            </tr>`
+
+            tabla.innerHTML += datos;
+            
+           
+            }else {
+                alert("Datos repetidos")
+            }
+
+            
+      
+        }
+    
+    }
+
+  
+    
+</script>
+
+</html>
