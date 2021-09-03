@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Convertidor</title>
+
+</head>
+<body class="bg-light">
+    <div class="container-fluid col-8">
+        <div>
+            <h2 class="m-3 text-center mt-5">Convertidor de céntimetros a metro y de metros a céntimetros</h2>
+            <p class="text-justify m-4">
+                Úsala para saber la equivalencia entre la longitud dada en metros y centímetros o al revés. 
+                Solo tienes que escribir los centímetros para saber cuántos metros son, o poner cuántos metros para saber cuántos centímetros son
+                y pulsar el bóton "Convertir" para conocer el resultado
+            </p>
+        </div>
+        <div class="bg-white m-5">
+            <form action="col-8" class="row mt-4 mx-2">
+                <div class="row m-2">
+                    <div class="col-6 text-center">
+                        <div class="m-3">
+                            <label for="" >Céntimetros</label>
+                            <input type="number" class="form-control" id="centimetros" oninput="calcularcm_m()" required>
+                        </div>        
+                    </div>
+                    <div class="col-6 text-center">
+                        <div class="m-3">
+                            <label for="">Metros</label>
+                            <input type="number" class="form-control"  oninput="calcularm_cm()" id="metros"  required>
+                        </div>       
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+                <h5 class="m-3  mt-5">Tabla de conversión</h5>
+                <table class="table text-justify">
+                    <tr>
+                        <th>1 Centímetros = 0.01 Metros</th>
+                        <th>10 Centímetros = 0.1 Metros</th>
+                        <th>2500 Centímetros = 25 Metros</th>
+                    </tr>
+                    <tr>
+                        <th>2 Centímetros = 0.02 Metros</th>
+                        <th>20 Centímetros = 0.2 Metros</th>
+                        <th>5000 Centímetros = 50 Metros</th>
+                    </tr>
+                    <tr>
+                        <th>3 Centímetros = 0.03 Metros</th>
+                        <th>30 Centímetros = 0.3 Metros</th>
+                        <th>10000 Centímetros = 100 Metros</th>
+                    </tr>
+                    <tr>
+                        <th>4 Centímetros = 0.04 Metros</th>
+                        <th>50 Centímetros = 0.5 Metros</th>
+                        <th>25000 Centímetros = 250 Metros</th>
+                    </tr>
+                    <tr>
+                        <th>5 Centímetros = 0.05 Metros</th>
+                        <th>20 Centímetros = 0.2 Metros</th>
+                        <th>50000 Centímetros = 500 Metros</th>
+                    </tr>
+                    
+                </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    function calcularcm_m(){
+        var centimetros = parseFloat(document.getElementById("centimetros").value) || 0;
+        var metros = parseFloat(document.getElementById("metros").value) || 0;
+            document.getElementById("metros").value= centimetros * 0.01;  
+    }
+    function calcularm_cm(){
+        var centimetros = parseFloat(document.getElementById("centimetros").value) || 0;
+        var metros = parseFloat(document.getElementById("metros").value) || 0;
+            document.getElementById("centimetros").value= metros * 100;  
+    }
+
+
+</script>
+</html>
