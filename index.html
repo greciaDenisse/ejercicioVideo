@@ -34,7 +34,7 @@
         .registrar{
             display: inline-block;
             padding: 7px 0;
-            width: 100px;
+            width: 120px;
             border: 1px solid #fff;
             border-radius: 50px;
             text-align: center;
@@ -124,121 +124,15 @@
             <h2>Bienvenido</h2>
             <br>
             <p>
-                <a href="#" class="registrar">Registrarse</a>
+                <a href="Formulario.html" class="registrar">Registrarse</a><br><br>
+                <h3>Herramientas</h3><br>
+                <a href="calculadora/calculadora.html" class="registrar">Calculadora</a><br><br>
+                <a href="pag2.html" class="registrar">Multiplicaciones</a><br><br>
+                <a href="convertidor.html" class="registrar">Convertidor</a><br><br>
+                <a href="pag.html" class="registrar">Generar tablas</a>
             </p>
         </div>
         <img src="https://seoparatodos.com/wp-content/uploads/2020/09/php.png" alt="">
     </section>
-    <div class="container">
-        <div class="modal modal-close">
-            <p class="close">X</p>
-            <div class="modal-textos">
-                <h2>REGISTRATE</h2>
-            </div>
-            <div class="textos">    
-                <form action="">
-                    <div> 
-                        <p>
-                            <label>Nombre:</label><br>
-                            <input id="nombre" name="nombre" type="text" required placeholder="Nombre"/>
-                        </p><br>                                  
-                    </div>
-                    <div>    
-                        <p>
-                            <label>Correo electrónico:</label><br>
-                            <input id="email" name="email" type="text" required placeholder="Email">
-                        </p><br>                             
-                    </div> 
-                    <div>
-                        <p>
-                            <label>Contraseña:</label><br>
-                            <input id="passw" name="passw" type="password" required placeholder="Contraseña">
-                        </p><br><br>                                 
-                    </div>  
-                    <div class="btn">
-                        <a href="#" class="btnR" onclick="registrar()">ACEPTAR</a>
-                    </div>   
-                </form>               
-            </div>
-        </div>
-    </div>
-    <script>
-        let cerrar =document.querySelectorAll(".close")[0];
-        let abrir =document.querySelectorAll(".registrar")[0];
-        let modal =document.querySelectorAll(".modal")[0];
-        let modalC =document.querySelectorAll(".container")[0];
-
-        abrir.addEventListener("click", function(e){
-            e.preventDefault();
-            modalC.style.opacity = "1";
-            modalC.style.visibility = "visible";        
-            modal.classList.toggle("modal-close");
-        });
-
-        cerrar.addEventListener("click", function(){
-            modal.classList.toggle("modal-close");
-           
-            setTimeout(function(){
-                modalC.style.opacity = "0";
-                modalC.style.visibility = "hidden"; 
-            },700)
-        });
-
-        window.addEventListener("click", function(e){
-            console.log(e.target)
-            if(e.target == modalC){
-                modal.classList.toggle("modal-close");
-           
-                setTimeout(function(){
-                    modalC.style.opacity = "0";
-                    modalC.style.visibility = "hidden"; 
-                },500)
-            }
-        });
-    
-        function registrar(){
-            var nom = document.getElementById('nombre').value;
-            var correo = document.getElementById('email').value;
-            var pass = document.getElementById('passw').value;
-            let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-
-            if(nom === ""){
-                alert("Escriba un nombre");
-                return false;
-            } 
-            if(nom.length <4){
-                alert("Escriba un nombre de mas de 4 caracteres");
-                return false;
-            }
-            if(correo === ""){
-                alert("Escriba un Email");
-                return false;
-            }
-            if(!regexEmail.test(correo)){
-                alert("Email no válido");
-                return false;
-            }
-            if(pass === ""){
-                alert("Escriba una contraseña");
-                return false;
-            }
-            if(pass.length <6){
-                alert("Escriba una contraseña de mas de 6 caracteres");
-                return false;
-            }else{
-                modal.classList.toggle("modal-close");
-           
-                setTimeout(function(){
-                    modalC.style.opacity = "0";
-                    modalC.style.visibility = "hidden"; 
-                },500)
-                alert("Gracias " + nom + " por registrarte!!")
-                document.getElementById('nombre').value="";
-                document.getElementById('email').value="";
-                document.getElementById('passw').value="";
-            }
-            return true;
-        }
-    </script>
 </body>
 </html>
