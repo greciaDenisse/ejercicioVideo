@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Roboto', sans-serif;
+        }
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            height: 650px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 0 40px;
+            background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
+        }
+        section h2{
+            font-size: 50px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        section img{
+            height: 60%;
+        }
+        .registrar{
+            display: inline-block;
+            padding: 7px 0;
+            width: 100px;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            text-align: center;
+            text-decoration: none;
+            color: #283773;
+            background: #fff;
+        }
+        .container{
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+        }
+        .modal{
+            width: 20%;
+            height: 45%;
+            bottom: 10px;
+            background: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            position: relative;
+            transition: transform 1s;
+            transform: translateY(0%);
+            border-radius: 10px;    
+        }
+        .modal-close{
+             transform: translateY(-200%);
+        }
+        .close{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: #c44a4a;
+            color: #fff;
+            line-height: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .modal-textos{
+            justify-content: center;
+            align-items: center;   
+        }
+        .btn{
+            text-align: center; 
+        }
+        .btnR{
+            padding: 7px 5px;
+            width: 100px;
+            border: 2px solid #0099CC;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            color: #0099CC;
+            background: transparent;
+        }
+        .btnR:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+        .textos{
+            padding: 0px 20px;
+            text-align: left;
+        }
+        @media screen and (max-width:1000px){
+            section{
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="textos">
+            <h2>Bienvenido</h2>
+            <br>
+            <p>
+                <a href="#" class="registrar">Registrarse</a>
+            </p>
+        </div>
+        <img src="https://seoparatodos.com/wp-content/uploads/2020/09/php.png" alt="">
+    </section>
+    <div class="container">
+        <div class="modal modal-close">
+            <p class="close">X</p>
+            <div class="modal-textos">
+                <h2>REGISTRATE</h2>
+            </div>
+            <div class="textos">    
+                <form action="">
+                    <div> 
+                        <p>
+                            <label>Nombre:</label><br>
+                            <input id="nombre" name="nombre" type="text" required placeholder="Nombre"/>
+                        </p><br>                                  
+                    </div>
+                    <div>    
+                        <p>
+                            <label>Correo electrónico:</label><br>
+                            <input id="email" name="email" type="text" required placeholder="Email">
+                        </p><br>                             
+                    </div> 
+                    <div>
+                        <p>
+                            <label>Contraseña:</label><br>
+                            <input id="passw" name="passw" type="password" required placeholder="Contraseña">
+                        </p><br><br>                                 
+                    </div>  
+                    <div class="btn">
+                        <a href="#" class="btnR" onclick="registrar()">ACEPTAR</a>
+                    </div>   
+                </form>               
+            </div>
+        </div>
+    </div>
+    <script>
+        let cerrar =document.querySelectorAll(".close")[0];
+        let abrir =document.querySelectorAll(".registrar")[0];
+        let modal =document.querySelectorAll(".modal")[0];
+        let modalC =document.querySelectorAll(".container")[0];
+
+        abrir.addEventListener("click", function(e){
+            e.preventDefault();
+            modalC.style.opacity = "1";
+            modalC.style.visibility = "visible";        
+            modal.classList.toggle("modal-close");
+        });
+
+        cerrar.addEventListener("click", function(){
+            modal.classList.toggle("modal-close");
+           
+            setTimeout(function(){
+                modalC.style.opacity = "0";
+                modalC.style.visibility = "hidden"; 
+            },700)
+        });
+
+        window.addEventListener("click", function(e){
+            console.log(e.target)
+            if(e.target == modalC){
+                modal.classList.toggle("modal-close");
+           
+                setTimeout(function(){
+                    modalC.style.opacity = "0";
+                    modalC.style.visibility = "hidden"; 
+                },500)
+            }
+        });
+    
+        function registrar(){
+            var nom = document.getElementById('nombre').value;
+            var correo = document.getElementById('email').value;
+            var pass = document.getElementById('passw').value;
+            let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            if(nom === ""){
+                alert("Escriba un nombre");
+                return false;
+            } 
+            if(nom.length <4){
+                alert("Escriba un nombre de mas de 4 caracteres");
+                return false;
+            }
+            if(correo === ""){
+                alert("Escriba un Email");
+                return false;
+            }
+            if(!regexEmail.test(correo)){
+                alert("Email no válido");
+                return false;
+            }
+            if(pass === ""){
+                alert("Escriba una contraseña");
+                return false;
+            }
+            if(pass.length <6){
+                alert("Escriba una contraseña de mas de 6 caracteres");
+                return false;
+            }else{
+                modal.classList.toggle("modal-close");
+           
+                setTimeout(function(){
+                    modalC.style.opacity = "0";
+                    modalC.style.visibility = "hidden"; 
+                },500)
+                alert("Gracias " + nom + " por registrarte!!")
+                document.getElementById('nombre').value="";
+                document.getElementById('email').value="";
+                document.getElementById('passw').value="";
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
